@@ -13,14 +13,11 @@ public class Occurrences {
     }
 
     private void transfer() throws NullPointerException {
-        try {
-            if (list == null) {
-                throw new NullPointerException();
-            } else if (list.isEmpty()) {
-                System.out.println("Список пуст!!!!!!!!");
-            }
-        } catch (NullPointerException e) {
-            System.out.println(e.getMessage() + " " + "Недопустимое значение списка = null!!!!!!!!!!!!");
+        if(list == null){
+            throw new RuntimeException("Список равен null!");
+        }
+        else if (list.isEmpty()){
+            throw new RuntimeException("Список пуст!");
         }
         for (String word : list) {
             if (word.isEmpty()) {
