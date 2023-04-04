@@ -7,26 +7,35 @@ public class Occurrences {
     private final HashMap<String,Integer> listMap = new HashMap<>();
     private final List<String> list;
 
-    public Occurrences(List<String> list) {
+    public Occurrences(List<String> list)  {
         this.list = list;
         transfer();
     }
-    private void transfer() {
-        for(String word:list){
-            if(word.isEmpty()){
-                continue;
+    private void transfer() throws NullPointerException{
+        try {
+            if(!list.isEmpty()) {
+                for (String word : list) {
+                    if (word.isEmpty()) {
+                        continue;
+                    } else if (word.equals("null")) {
+                        continue;
+                    } else if (!listMap.containsKey(word)) {
+                        listMap.put(word, 1);
+                        continue;
+                    }
+                    int count = listMap.get(word);
+                    listMap.put(word, count + 1);
+                }
             }
-            else if(word.equals("null")){
-                continue;
+            else{
+                System.out.println("Переданный список пуст!!!!!!!!!!!!!!!");
             }
-            else if(!listMap.containsKey(word)){
-                listMap.put(word,1);
-                continue;
-            }
-            int count = listMap.get(word);
-            listMap.put(word,count + 1);
+        }
+        catch (NullPointerException e ){
+            System.out.println(e.getMessage() +" " + "Недопустимое значение списка = null!!!!!!!!!!!!");
         }
     }
+
     public int getSumValues(String word){
         if(listMap.containsKey(word)){
             return listMap.get(word);
