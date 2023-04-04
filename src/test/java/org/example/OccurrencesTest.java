@@ -12,6 +12,19 @@ class OccurrencesTest {
     public static List<String> words2 = null;
     public static List<String> words3 = List.of();
 
+    @Test
+    void TestCreateObject1() {
+        Throwable exception = assertThrows(RuntimeException.class, () -> {
+            Occurrences occurrences = new Occurrences(words2);
+        });
+    }
+
+    @Test
+    void TestCreateObject2() {
+        Throwable exception = assertThrows(RuntimeException.class, () -> {
+            Occurrences occurrences = new Occurrences(words3);
+        });
+    }
 
     @Test
     void TestGetSumValuesMethod1() {
@@ -22,15 +35,19 @@ class OccurrencesTest {
 
     @Test
     void TestGetSumValuesMethod2() {
-        Occurrences occurrences = new Occurrences(words2);
-        int result = occurrences.getSumValues("Java");
-        assertEquals(3, result);
+        Throwable exception = assertThrows(RuntimeException.class, () -> {
+            Occurrences occurrences = new Occurrences(words1);
+            occurrences.getSumValues("null");
+
+        });
     }
 
     @Test
     void TestGetSumValuesMethod3() {
-        Occurrences occurrences = new Occurrences(words3);
-        int result = occurrences.getSumValues("Java");
-        assertEquals(3, result);
+        Throwable exception = assertThrows(RuntimeException.class, () -> {
+            Occurrences occurrences = new Occurrences(words1);
+            occurrences.getSumValues(" ");
+
+        });
     }
 }
