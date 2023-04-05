@@ -1,5 +1,4 @@
 package org.example;
-
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,19 +11,15 @@ public class Occurrences {
         transfer();
     }
 
-    private void transfer() throws NullPointerException {
-        if(list == null){
-            throw new RuntimeException("Список равен null!");
-        }
-        else if (list.isEmpty()){
-            throw new RuntimeException("Список пуст!");
+    private void transfer() throws RuntimeException {
+        if(list == null || list.isEmpty()){
+            throw new RuntimeException("Список равен null или же пуст!");
         }
         for (String word : list) {
             if (word.isEmpty()) {
                 continue;
-            } else if (word.equals("null")) {
-                continue;
-            } else if (!listMap.containsKey(word)) {
+            }
+            else if (!listMap.containsKey(word)) {
                 listMap.put(word, 1);
                 continue;
             }

@@ -17,6 +17,7 @@ class OccurrencesTest {
         Throwable exception = assertThrows(RuntimeException.class, () -> {
             Occurrences occurrences = new Occurrences(words2);
         });
+        assertEquals("Список равен null или же пуст!",exception.getMessage());
     }
 
     @Test
@@ -24,6 +25,7 @@ class OccurrencesTest {
         Throwable exception = assertThrows(RuntimeException.class, () -> {
             Occurrences occurrences = new Occurrences(words3);
         });
+        assertEquals("Список равен null или же пуст!",exception.getMessage());
     }
 
     @Test
@@ -37,17 +39,8 @@ class OccurrencesTest {
     void TestGetSumValuesMethod2() {
         Throwable exception = assertThrows(RuntimeException.class, () -> {
             Occurrences occurrences = new Occurrences(words1);
-            occurrences.getSumValues("null");
-
+            int result = occurrences.getSumValues("");
         });
-    }
-
-    @Test
-    void TestGetSumValuesMethod3() {
-        Throwable exception = assertThrows(RuntimeException.class, () -> {
-            Occurrences occurrences = new Occurrences(words1);
-            occurrences.getSumValues(" ");
-
-        });
+        assertEquals("Не допустимое значение для колекции или же отсутствие элемента.",exception.getMessage());
     }
 }
