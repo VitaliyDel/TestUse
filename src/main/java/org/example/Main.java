@@ -3,7 +3,7 @@ package org.example;
 import java.util.List;
 
 public class Main {
-    public static List<String> words = List.of("", "Java", "JavaScript", "Python", "C", "Ruby", "Java", "Java", "", "null");
+    private final static List<String> words = List.of("", "Java", "JavaScript", "Python", "C", "Ruby", "Java", "Java", "", "null");
 
 
     public static void main(String[] args) {

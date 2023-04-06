@@ -12,8 +12,11 @@ public class Occurrences {
     }
 
     private void transfer() throws RuntimeException {
-        if(list == null || list.isEmpty()){
-            throw new RuntimeException("Список равен null или же пуст!");
+        if(list == null){
+            throw new NullPointerException("Список равен null!");
+        }
+        else if(list.isEmpty()){
+            throw new RuntimeException("Список пуст");
         }
         for (String word : list) {
             if (word.isEmpty()) {

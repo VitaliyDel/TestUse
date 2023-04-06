@@ -8,39 +8,38 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 class OccurrencesTest {
-    public static List<String> words1 = List.of("", "Java", "JavaScript", "Python", "C", "Ruby", "Java", "Java", "", "null");
-    public static List<String> words2 = null;
-    public static List<String> words3 = List.of();
+    private final static List<String> words1 = List.of("", "Java", "JavaScript", "Python", "C", "Ruby", "Java", "Java", "", "null");
 
     @Test
-    void TestCreateObject1() {
-        Throwable exception = assertThrows(RuntimeException.class, () -> {
-            Occurrences occurrences = new Occurrences(words2);
+    void createObject_ListNull_NullPointerException() {
+        List<String> words2 = null;
+
+        Throwable exception = assertThrows(NullPointerException.class, () -> {
+            new Occurrences(words2);
         });
-        assertEquals("Список равен null или же пуст!",exception.getMessage());
+
+        assertEquals("Список равен null!",exception.getMessage());
     }
 
     @Test
-    void TestCreateObject2() {
+    void createObject_LIstEmpty_RuntimeException() {
+        List<String> words3 = List.of();
+
         Throwable exception = assertThrows(RuntimeException.class, () -> {
-            Occurrences occurrences = new Occurrences(words3);
+            new Occurrences(words3);
         });
-        assertEquals("Список равен null или же пуст!",exception.getMessage());
+
+        assertEquals("Список пуст",exception.getMessage());
     }
 
     @Test
-    void TestGetSumValuesMethod1() {
-        Occurrences occurrences = new Occurrences(words1);
-        int result = occurrences.getSumValues("Java");
-        assertEquals(3, result);
-    }
+    void getSumValues_EmptyString_RuntimeException() {
 
-    @Test
-    void TestGetSumValuesMethod2() {
         Throwable exception = assertThrows(RuntimeException.class, () -> {
             Occurrences occurrences = new Occurrences(words1);
-            int result = occurrences.getSumValues("");
+            occurrences.getSumValues("");
         });
+
         assertEquals("Не допустимое значение для колекции или же отсутствие элемента.",exception.getMessage());
     }
 }
